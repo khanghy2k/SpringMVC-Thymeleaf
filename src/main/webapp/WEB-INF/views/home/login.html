@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mastrPage}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0 auto;
+        border: 1px solid black;
+
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    button[type="submit"] {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<form th:action="@{/home/login}" method="post" th:object="${login}">
+    <label for="username">Tên đăng nhập:</label>
+    <input type="text" th:field="*{username}" id="username" name="username">
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Lỗi tài khoản</p>
+
+    <label for="password">Mật khẩu:</label>
+    <input type="password" th:field="*{password}" id="password" name="password">
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Lỗi mật khẩu</p>
+
+    <button type="submit">Đăng Nhập</button>
+</form>
+
+
+</body>
+</html>
